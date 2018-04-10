@@ -36,7 +36,8 @@ import {
 } from 'state/at-a-glance';
 import {
 	getSitePlan,
-	isFetchingSiteData
+	isFetchingSiteData,
+	getActiveFeatures,
 } from 'state/site';
 import SectionHeader from 'components/section-header';
 import ProStatus from 'pro-status';
@@ -108,7 +109,8 @@ export const SettingsCard = props => {
 			case FEATURE_WORDADS_JETPACK:
 				if (
 					'is-premium-plan' === planClass ||
-					'is-business-plan' === planClass
+					'is-business-plan' === planClass ||
+					-1 !== props.activeFeatures.indexOf( FEATURE_WORDADS_JETPACK )
 				) {
 					return '';
 				}
@@ -238,7 +240,8 @@ export const SettingsCard = props => {
 			case FEATURE_WORDADS_JETPACK:
 				if (
 					'is-premium-plan' !== planClass &&
-					'is-business-plan' !== planClass
+					'is-business-plan' !== planClass &&
+					-1 === props.activeFeatures.indexOf( FEATURE_WORDADS_JETPACK )
 				) {
 					return false;
 				}
@@ -325,7 +328,8 @@ export default connect(
 			userCanManageModules: userCanManageModules( state ),
 			isAkismetKeyValid: isAkismetKeyValid( state ),
 			isCheckingAkismetKey: isCheckingAkismetKey( state ),
-			vaultPressData: getVaultPressData( state )
+			vaultPressData: getVaultPressData( state ),
+			activeFeatures: getActiveFeatures( state ),
 		};
 	}
 )( SettingsCard );
