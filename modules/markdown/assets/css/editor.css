@@ -1,0 +1,18 @@
+.gutenberg .wp-block-markdown iframe {
+	display: block;
+	pointer-events: none;
+}
+
+.gutenberg .wp-block-markdown .CodeMirror {
+	border-radius: 4px;
+	height: auto;
+}
+
+.gutenberg .wp-block-markdown .CodeMirror-gutters {
+	background: #FFFFFF;
+	border-right: none;
+}
+
+.gutenberg .wp-block-markdown .CodeMirror-lines {
+	padding: 8px 8px 8px 0;
+}
